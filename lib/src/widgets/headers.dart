@@ -106,3 +106,43 @@ class _TriangleHeaderPainter extends CustomPainter {
     return true;
   }
 }
+
+class PeakHeader extends StatelessWidget {
+  const PeakHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: CustomPaint(
+        painter: _PeakHeaderPainter(),
+      ),
+    );
+  }
+}
+
+class _PeakHeaderPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+    //Properties
+    paint.color = const Color(0xff615AAB);
+    paint.style = PaintingStyle.fill;
+    paint.strokeWidth = 5;
+
+    final path = Path();
+    //Draw with path and pencil
+    path.lineTo(0, size.height * 0.20);
+    path.lineTo(size.width * 0.5, size.height * 0.28);
+    path.lineTo(size.width, size.height * 0.35);
+    path.lineTo(size.width, 0);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
