@@ -38,9 +38,7 @@ class DiagonalHeader extends StatelessWidget {
     return SizedBox(
       height: double.infinity,
       width: double.infinity,
-      child: CustomPaint(
-        painter: _DiagonalHeaderPainter(),
-      ),
+      child: CustomPaint(painter: _DiagonalHeaderPainter()),
     );
   }
 }
@@ -49,12 +47,13 @@ class _DiagonalHeaderPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
+    final path = Path();
+
     //Properties
     paint.color = const Color(0xff615AAB);
     paint.style = PaintingStyle.fill;
     paint.strokeWidth = 5;
 
-    final path = Path();
     //Draw with path and pencil
     path.lineTo(0, size.height * 0.35);
     path.lineTo(size.width, size.height * 0.30);
@@ -77,9 +76,7 @@ class TriangleHeader extends StatelessWidget {
     return SizedBox(
       height: double.infinity,
       width: double.infinity,
-      child: CustomPaint(
-        painter: _TriangleHeaderPainter(),
-      ),
+      child: CustomPaint(painter: _TriangleHeaderPainter()),
     );
   }
 }
@@ -88,12 +85,13 @@ class _TriangleHeaderPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
+    final path = Path();
+
     //Properties
     paint.color = const Color(0xff615AAB);
     paint.style = PaintingStyle.fill;
     paint.strokeWidth = 5;
 
-    final path = Path();
     //Draw with path and pencil
     path.lineTo(size.width, size.height);
     path.lineTo(size.width, 0);
@@ -115,9 +113,7 @@ class PeakHeader extends StatelessWidget {
     return SizedBox(
       height: double.infinity,
       width: double.infinity,
-      child: CustomPaint(
-        painter: _PeakHeaderPainter(),
-      ),
+      child: CustomPaint(painter: _PeakHeaderPainter()),
     );
   }
 }
@@ -126,12 +122,13 @@ class _PeakHeaderPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
+    final path = Path();
+
     //Properties
     paint.color = const Color(0xff615AAB);
     paint.style = PaintingStyle.fill;
     paint.strokeWidth = 5;
 
-    final path = Path();
     //Draw with path and pencil
     path.lineTo(0, size.height * 0.20);
     path.lineTo(size.width * 0.5, size.height * 0.28);
@@ -155,9 +152,7 @@ class CurvedHeader extends StatelessWidget {
     return SizedBox(
       height: double.infinity,
       width: double.infinity,
-      child: CustomPaint(
-        painter: _CurvedHeaderPainter(),
-      ),
+      child: CustomPaint(painter: _CurvedHeaderPainter()),
     );
   }
 }
@@ -166,16 +161,21 @@ class _CurvedHeaderPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
+    final path = Path();
+
     //Properties
     paint.color = const Color(0xff615AAB);
     paint.style = PaintingStyle.fill;
     paint.strokeWidth = 5;
 
-    final path = Path();
     //Draw with path and pencil
     path.lineTo(0, size.height * 0.25);
     path.quadraticBezierTo(
-        size.width * 0.50, size.height * 0.40, size.width, size.height * 0.25);
+      size.width * 0.50,
+      size.height * 0.40,
+      size.width,
+      size.height * 0.25,
+    );
     path.lineTo(size.width, 0);
 
     canvas.drawPath(path, paint);
@@ -195,9 +195,7 @@ class WavesHeader extends StatelessWidget {
     return SizedBox(
       height: double.infinity,
       width: double.infinity,
-      child: CustomPaint(
-        painter: _WavesHeaderPainter(),
-      ),
+      child: CustomPaint(painter: _WavesHeaderPainter()),
     );
   }
 }
@@ -206,18 +204,27 @@ class _WavesHeaderPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
+    final path = Path();
+
     //Properties
     paint.color = const Color(0xff615AAB);
     paint.style = PaintingStyle.fill;
     paint.strokeWidth = 5;
 
-    final path = Path();
     //Draw with path and pencil
     path.lineTo(0, size.height * 0.25);
-    path.quadraticBezierTo(size.width * 0.25, size.height * 0.30,
-        size.width * 0.50, size.height * 0.25);
     path.quadraticBezierTo(
-        size.width * 0.75, size.height * 0.20, size.width, size.height * 0.25);
+      size.width * 0.25,
+      size.height * 0.30,
+      size.width * 0.50,
+      size.height * 0.25,
+    );
+    path.quadraticBezierTo(
+      size.width * 0.75,
+      size.height * 0.20,
+      size.width,
+      size.height * 0.25,
+    );
     path.lineTo(size.width, 0);
 
     canvas.drawPath(path, paint);
@@ -237,9 +244,7 @@ class WavesGradientHeader extends StatelessWidget {
     return SizedBox(
       height: double.infinity,
       width: double.infinity,
-      child: CustomPaint(
-        painter: _WavesGradientHeaderPainter(),
-      ),
+      child: CustomPaint(painter: _WavesGradientHeaderPainter()),
     );
   }
 }
@@ -264,17 +269,26 @@ class _WavesGradientHeaderPainter extends CustomPainter {
     );
 
     final paint = Paint()..shader = gradient.createShader(rect);
+    final path = Path();
+
     //Properties
     paint.style = PaintingStyle.fill;
     paint.strokeWidth = 5;
 
-    final path = Path();
     //Draw with path and pencil
     path.lineTo(0, size.height * 0.25);
-    path.quadraticBezierTo(size.width * 0.25, size.height * 0.30,
-        size.width * 0.50, size.height * 0.25);
     path.quadraticBezierTo(
-        size.width * 0.75, size.height * 0.20, size.width, size.height * 0.25);
+      size.width * 0.25,
+      size.height * 0.30,
+      size.width * 0.50,
+      size.height * 0.25,
+    );
+    path.quadraticBezierTo(
+      size.width * 0.75,
+      size.height * 0.20,
+      size.width,
+      size.height * 0.25,
+    );
     path.lineTo(size.width, 0);
 
     canvas.drawPath(path, paint);

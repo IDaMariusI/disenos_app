@@ -1,3 +1,5 @@
+import 'dart:math' as Math;
+
 import 'package:flutter/material.dart';
 
 class AnimationsPage extends StatelessWidget {
@@ -5,7 +7,7 @@ class AnimationsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: AnimatedSquare(),
       ),
@@ -23,7 +25,6 @@ class AnimatedSquare extends StatefulWidget {
 class _AnimatedSquareState extends State<AnimatedSquare>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
-
   late Animation<double> rotation;
 
   @override
@@ -32,13 +33,21 @@ class _AnimatedSquareState extends State<AnimatedSquare>
       vsync: this,
       duration: const Duration(milliseconds: 40000),
     );
-    rotation = Tween(begin: 0.0, end: 2.0).animate(controller);
+    rotation = Tween(begin: 0.0, end: 2 * Math.pi).animate(controller);
+
+    controller.addListener(() {
+      if (controller.status == AnimationStatus.completed) {
+        controller.reverse();
+      }
+    });
+
     super.initState();
   }
 
   @override
   void dispose() {
     controller.dispose();
+
     super.dispose();
   }
 
