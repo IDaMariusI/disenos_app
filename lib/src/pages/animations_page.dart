@@ -1,4 +1,4 @@
-import 'dart:math' as Math;
+import 'dart:math' as m_ath;
 
 import 'package:flutter/material.dart';
 
@@ -26,6 +26,7 @@ class _AnimatedSquareState extends State<AnimatedSquare>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> rotation;
+  late Animation<double> opacity;
 
   @override
   void initState() {
@@ -34,7 +35,7 @@ class _AnimatedSquareState extends State<AnimatedSquare>
       duration: const Duration(milliseconds: 40000),
     );
 
-    rotation = Tween(begin: 0.0, end: 2 * Math.pi).animate(
+    rotation = Tween(begin: 0.0, end: 2 * m_ath.pi).animate(
       CurvedAnimation(parent: controller, curve: Curves.easeOut),
     );
 
@@ -43,6 +44,8 @@ class _AnimatedSquareState extends State<AnimatedSquare>
         controller.reset();
       }
     });
+
+    opacity = Tween(begin: 0.1, end: 1.0).animate(controller);
 
     super.initState();
   }
@@ -61,10 +64,10 @@ class _AnimatedSquareState extends State<AnimatedSquare>
     return AnimatedBuilder(
       animation: controller,
       child: _Rectangle(),
-      builder: (BuildContext context, Widget? child) {
+      builder: (BuildContext context, Widget? childRectangle) {
         return Transform.rotate(
           angle: rotation.value,
-          child: child,
+          child: Opacity(opacity: opacity.value, child: childRectangle),
         );
       },
     );
