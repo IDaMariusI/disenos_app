@@ -1,4 +1,4 @@
-import 'dart:math' as m_ath;
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
@@ -35,7 +35,7 @@ class _AnimatedSquareState extends State<AnimatedSquare>
       duration: const Duration(milliseconds: 40000),
     );
 
-    rotation = Tween(begin: 0.0, end: 2 * m_ath.pi).animate(
+    rotation = Tween(begin: 0.0, end: 2 * math.pi).animate(
       CurvedAnimation(parent: controller, curve: Curves.easeOut),
     );
 
@@ -45,7 +45,9 @@ class _AnimatedSquareState extends State<AnimatedSquare>
       }
     });
 
-    opacity = Tween(begin: 0.1, end: 1.0).animate(controller);
+    opacity = Tween(begin: 0.1, end: 1.0).animate(CurvedAnimation(
+        parent: controller,
+        curve: const Interval(0, 0.25, curve: Curves.easeOut)));
 
     super.initState();
   }
