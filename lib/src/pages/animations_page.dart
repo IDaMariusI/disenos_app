@@ -25,6 +25,7 @@ class AnimatedSquare extends StatefulWidget {
 class _AnimatedSquareState extends State<AnimatedSquare>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
+
   late Animation<double> rotation;
   late Animation<double> opacityIn;
   late Animation<double> opacityOut;
