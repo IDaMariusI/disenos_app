@@ -30,8 +30,7 @@ class _CircleGraphsPageState extends State<CircleGraphsPage> {
         child: Container(
           width: 400,
           height: 400,
-          color: Colors.red,
-          child: RadialProgress(percentage: 40.0),
+          child: RadialProgress(percentage: percentage),
         ),
       ),
     );
