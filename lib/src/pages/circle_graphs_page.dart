@@ -26,18 +26,51 @@ class _CircleGraphsPageState extends State<CircleGraphsPage> {
         },
         child: const Icon(Icons.refresh),
       ),
-      body: Center(
-        child: Container(
-          width: 300,
-          height: 300,
-          child: RadialProgress(
-            percentage: percentage,
-            primaryColor: Colors.purple,
-            secondaryColor: Colors.grey,
-            primaryThickness: 10.0,
-            secondaryThickness: 4.0,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              CustomeRadialProgress(percentage: percentage, color: Colors.blue),
+              CustomeRadialProgress(percentage: percentage, color: Colors.red),
+            ],
           ),
-        ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              CustomeRadialProgress(percentage: percentage, color: Colors.pink),
+              CustomeRadialProgress(
+                  percentage: percentage, color: Colors.purple),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomeRadialProgress extends StatelessWidget {
+  const CustomeRadialProgress({
+    super.key,
+    required this.percentage,
+    required this.color,
+  });
+
+  final double percentage;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 180,
+      height: 180,
+      child: RadialProgress(
+        percentage: percentage,
+        primaryColor: color,
+        secondaryColor: Colors.grey,
+        primaryThickness: 10.0,
+        secondaryThickness: 4.0,
       ),
     );
   }

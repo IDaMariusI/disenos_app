@@ -3,12 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class RadialProgress extends StatefulWidget {
-  final double percentage;
-  final double primaryThickness;
-  final double secondaryThickness;
-  final Color primaryColor;
-  final Color secondaryColor;
-
   const RadialProgress({
     super.key,
     required this.percentage,
@@ -17,6 +11,12 @@ class RadialProgress extends StatefulWidget {
     this.primaryThickness = 10.0,
     this.secondaryThickness = 4.0,
   });
+
+  final double percentage;
+  final double primaryThickness;
+  final double secondaryThickness;
+  final Color primaryColor;
+  final Color secondaryColor;
 
   @override
   State<RadialProgress> createState() => _RadialProgressState();
@@ -76,12 +76,6 @@ class _RadialProgressState extends State<RadialProgress>
 }
 
 class _MyRadialProgress extends CustomPainter {
-  double percentage;
-  final double primaryThinkness;
-  final double secondaryThinkness;
-  final Color primaryColor;
-  final Color secondaryColor;
-
   _MyRadialProgress(
     this.percentage,
     this.primaryColor,
@@ -89,6 +83,12 @@ class _MyRadialProgress extends CustomPainter {
     this.primaryThinkness,
     this.secondaryThinkness,
   );
+
+  double percentage;
+  final double primaryThinkness;
+  final double secondaryThinkness;
+  final Color primaryColor;
+  final Color secondaryColor;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -111,8 +111,13 @@ class _MyRadialProgress extends CustomPainter {
     //Fill
     double arcAngle = 2 * pi * (percentage / 100);
 
-    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), -pi / 2,
-        arcAngle, false, paintArc);
+    canvas.drawArc(
+      Rect.fromCircle(center: center, radius: radius),
+      -pi / 2,
+      arcAngle,
+      false,
+      paintArc,
+    );
   }
 
   @override
