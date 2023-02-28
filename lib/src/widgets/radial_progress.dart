@@ -106,6 +106,7 @@ class _MyRadialProgress extends CustomPainter {
     final paintArc = Paint()
       ..strokeWidth = primaryThinkness
       ..color = primaryColor
+      ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
 
     //Fill
