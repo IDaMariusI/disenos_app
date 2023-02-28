@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -9,8 +10,34 @@ class CircularProgressPage extends StatefulWidget {
   State<CircularProgressPage> createState() => _CircularProgressPageState();
 }
 
-class _CircularProgressPageState extends State<CircularProgressPage> {
-  double percentage = 0;
+class _CircularProgressPageState extends State<CircularProgressPage>
+    with SingleTickerProviderStateMixin {
+  double currentPercentage = 0.0;
+  double newPercentage = 0.0;
+
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 800));
+
+    controller.addListener(() {
+      setState(() {
+        currentPercentage =
+            lerpDouble(currentPercentage, newPercentage, controller.value)!;
+      });
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +45,14 @@ class _CircularProgressPageState extends State<CircularProgressPage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pink,
         onPressed: () {
-          percentage += 10;
-          if (percentage > 100) {
-            percentage = 0;
+          currentPercentage = newPercentage;
+          newPercentage += 10;
+          if (newPercentage > 100) {
+            newPercentage = 0;
+            currentPercentage = 0;
           }
+
+          controller.forward(from: 0.0);
 
           setState(() {});
         },
@@ -33,7 +64,7 @@ class _CircularProgressPageState extends State<CircularProgressPage> {
           width: 300,
           height: 300,
           child: CustomPaint(
-            painter: _MyRadialProgress(percentage),
+            painter: _MyRadialProgress(currentPercentage),
           ),
         ),
       ),
@@ -42,7 +73,7 @@ class _CircularProgressPageState extends State<CircularProgressPage> {
 }
 
 class _MyRadialProgress extends CustomPainter {
-  final percentage;
+  double percentage;
 
   _MyRadialProgress(this.percentage);
 
@@ -63,16 +94,12 @@ class _MyRadialProgress extends CustomPainter {
       ..strokeWidth = 8
       ..color = Colors.pink
       ..style = PaintingStyle.stroke;
+
     //Fill
     double arcAngle = 2 * pi * (percentage / 100);
 
-    canvas.drawArc(
-      Rect.fromCircle(center: center, radius: radius),
-      -pi / 2,
-      arcAngle,
-      false,
-      paintArc,
-    );
+    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), -pi / 2,
+        arcAngle, false, paintArc);
   }
 
   @override
