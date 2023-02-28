@@ -20,7 +20,9 @@ class _CircularProgressPageState extends State<CircularProgressPage>
   @override
   void initState() {
     controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 800));
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
 
     controller.addListener(() {
       setState(() {
