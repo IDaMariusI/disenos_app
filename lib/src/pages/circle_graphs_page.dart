@@ -28,9 +28,15 @@ class _CircleGraphsPageState extends State<CircleGraphsPage> {
       ),
       body: Center(
         child: Container(
-          width: 400,
-          height: 400,
-          child: RadialProgress(percentage: percentage),
+          width: 300,
+          height: 300,
+          child: RadialProgress(
+            percentage: percentage,
+            primaryColor: Colors.purple,
+            secondaryColor: Colors.grey,
+            primaryThickness: 10.0,
+            secondaryThickness: 4.0,
+          ),
         ),
       ),
     );

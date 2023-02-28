@@ -3,9 +3,20 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class RadialProgress extends StatefulWidget {
-  final percentage;
+  final double percentage;
+  final double primaryThickness;
+  final double secondaryThickness;
+  final Color primaryColor;
+  final Color secondaryColor;
 
-  const RadialProgress({super.key, this.percentage});
+  const RadialProgress({
+    super.key,
+    required this.percentage,
+    this.primaryColor = Colors.blue,
+    this.secondaryColor = Colors.grey,
+    this.primaryThickness = 10.0,
+    this.secondaryThickness = 4.0,
+  });
 
   @override
   State<RadialProgress> createState() => _RadialProgressState();
@@ -49,8 +60,14 @@ class _RadialProgressState extends State<RadialProgress>
           width: double.infinity,
           height: double.infinity,
           child: CustomPaint(
-            painter: _MyRadialProgress((widget.percentage - animateDifference) +
-                (animateDifference * controller.value)),
+            painter: _MyRadialProgress(
+              (widget.percentage - animateDifference) +
+                  (animateDifference * controller.value),
+              widget.primaryColor,
+              widget.secondaryColor,
+              widget.primaryThickness,
+              widget.secondaryThickness,
+            ),
           ),
         );
       },
@@ -60,15 +77,25 @@ class _RadialProgressState extends State<RadialProgress>
 
 class _MyRadialProgress extends CustomPainter {
   double percentage;
+  final double primaryThinkness;
+  final double secondaryThinkness;
+  final Color primaryColor;
+  final Color secondaryColor;
 
-  _MyRadialProgress(this.percentage);
+  _MyRadialProgress(
+    this.percentage,
+    this.primaryColor,
+    this.secondaryColor,
+    this.primaryThinkness,
+    this.secondaryThinkness,
+  );
 
   @override
   void paint(Canvas canvas, Size size) {
     //Complete Circle
     final paintCircle = Paint()
-      ..strokeWidth = 4
-      ..color = Colors.grey
+      ..strokeWidth = secondaryThinkness
+      ..color = secondaryColor
       ..style = PaintingStyle.stroke;
     final center = Offset(size.width * 0.5, size.height / 2);
     final radius = min(size.width * 0.5, size.height * 0.5);
@@ -77,8 +104,8 @@ class _MyRadialProgress extends CustomPainter {
 
     //Arc
     final paintArc = Paint()
-      ..strokeWidth = 8
-      ..color = Colors.pink
+      ..strokeWidth = primaryThinkness
+      ..color = primaryColor
       ..style = PaintingStyle.stroke;
 
     //Fill
