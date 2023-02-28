@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:disenos_app/src/pages/circle_graphs_page.dart';
+import 'package:disenos_app/src/pages/pages.dart';
 
 void main() => runApp(const MyApp());
 

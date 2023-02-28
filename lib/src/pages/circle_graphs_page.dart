@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:disenos_app/src/widgets/widgets.dart';
+
 class CircleGraphsPage extends StatefulWidget {
   const CircleGraphsPage({super.key});
 
@@ -25,9 +27,11 @@ class _CircleGraphsPageState extends State<CircleGraphsPage> {
         child: const Icon(Icons.refresh),
       ),
       body: Center(
-        child: Text(
-          '$percentage%',
-          style: const TextStyle(fontSize: 50.0),
+        child: Container(
+          width: 400,
+          height: 400,
+          color: Colors.red,
+          child: RadialProgress(percentage: 40.0),
         ),
       ),
     );
