@@ -5,8 +5,8 @@ class SliderModel with ChangeNotifier {
 
   double get currentPage => _currentPage;
 
-  set currentPage(double currentPage) {
-    _currentPage = currentPage;
+  set currentPage(double page) {
+    _currentPage = page;
     notifyListeners();
   }
 }
