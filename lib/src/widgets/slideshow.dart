@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:provider/provider.dart';
 
 import 'package:disenos_app/src/models/models.dart';
 
 class Slideshow extends StatelessWidget {
-  const Slideshow({super.key});
+  const Slideshow({super.key, required this.slides});
+
+  final List<Widget> slides;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class Slideshow extends StatelessWidget {
       child: Center(
         child: Column(
           children: [
-            Expanded(child: _Slides()),
+            Expanded(child: _Slides(slides: slides)),
             _Dots(),
           ],
         ),
@@ -25,6 +26,10 @@ class Slideshow extends StatelessWidget {
 }
 
 class _Slides extends StatefulWidget {
+  const _Slides({required this.slides});
+
+  final List<Widget> slides;
+
   @override
   State<_Slides> createState() => _SlidesState();
 }
@@ -35,7 +40,6 @@ class _SlidesState extends State<_Slides> {
   @override
   void initState() {
     pageViewController.addListener(() {
-      //Update Provider/SliderModel
       Provider.of<SliderModel>(context, listen: false).currentPage =
           pageViewController.page!;
     });
@@ -55,20 +59,21 @@ class _SlidesState extends State<_Slides> {
     return Container(
       child: PageView(
         controller: pageViewController,
-        children: const [
-          _Slide('assets/svgs/slide-1.svg'),
-          _Slide('assets/svgs/slide-2.svg'),
-          _Slide('assets/svgs/slide-3.svg'),
-        ],
+        //children: const [
+        //  _Slide('assets/svgs/slide-1.svg'),
+        //  _Slide('assets/svgs/slide-2.svg'),
+        //  _Slide('assets/svgs/slide-3.svg'),
+        //],
+        children: widget.slides.map((slide) => _Slide(slide)).toList(),
       ),
     );
   }
 }
 
 class _Slide extends StatelessWidget {
-  const _Slide(this.svg);
+  const _Slide(this.slide);
 
-  final String svg;
+  final Widget slide;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +81,7 @@ class _Slide extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       padding: const EdgeInsets.all(30),
-      child: SvgPicture.asset(svg),
+      child: slide,
     );
   }
 }
