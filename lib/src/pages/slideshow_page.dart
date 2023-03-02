@@ -15,6 +15,8 @@ class SlideshowPage extends StatelessWidget {
         dotsUp: false,
         primaryColor: const Color(0xffFF5A7E),
         secondaryColor: Colors.grey,
+        primaryBullet: 20.0,
+        secondaryBullet: 12.0,
         slides: <Widget>[
           SvgPicture.asset('assets/svgs/slide-1.svg'),
           SvgPicture.asset('assets/svgs/slide-2.svg'),
