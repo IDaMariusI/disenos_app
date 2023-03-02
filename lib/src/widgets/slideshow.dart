@@ -17,7 +17,7 @@ class Slideshow extends StatelessWidget {
         child: Column(
           children: [
             Expanded(child: _Slides(slides: slides)),
-            _Dots(),
+            _Dots(totalSlides: slides.length),
           ],
         ),
       ),
@@ -59,11 +59,6 @@ class _SlidesState extends State<_Slides> {
     return Container(
       child: PageView(
         controller: pageViewController,
-        //children: const [
-        //  _Slide('assets/svgs/slide-1.svg'),
-        //  _Slide('assets/svgs/slide-2.svg'),
-        //  _Slide('assets/svgs/slide-3.svg'),
-        //],
         children: widget.slides.map((slide) => _Slide(slide)).toList(),
       ),
     );
@@ -87,18 +82,18 @@ class _Slide extends StatelessWidget {
 }
 
 class _Dots extends StatelessWidget {
+  const _Dots({required this.totalSlides});
+
+  final int totalSlides;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 70,
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _Dot(0),
-          _Dot(1),
-          _Dot(2),
-        ],
+        children: List.generate(totalSlides, (i) => _Dot(i)),
       ),
     );
   }
