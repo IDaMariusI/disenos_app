@@ -191,24 +191,20 @@ class _SlideshowModel with ChangeNotifier {
   double get primaryBullet => _primaryBullet;
   set primaryBullet(double size) {
     _primaryBullet = size;
-    notifyListeners();
   }
 
   double get secondaryBullet => _secondaryBullet;
   set secondaryBullet(double size) {
     _secondaryBullet = size;
-    notifyListeners();
   }
 
   Color get primaryColor => _primaryColor;
   set primaryColor(Color color) {
     _primaryColor = color;
-    notifyListeners();
   }
 
   Color get secondaryColor => _secondaryColor;
   set secondaryColor(Color color) {
     _secondaryColor = color;
-    notifyListeners();
   }
 }
