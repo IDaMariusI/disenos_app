@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import 'package:disenos_app/src/models/models.dart';
-
 class Slideshow extends StatelessWidget {
   const Slideshow({
     super.key,
@@ -21,28 +19,42 @@ class Slideshow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => SliderModel(),
+      create: (_) => _SlideshowModel(),
       child: SafeArea(
         child: Center(
-          child: Column(
-            children: [
-              if (dotsUp)
-                _Dots(
-                  totalSlides: slides.length,
-                  primaryColor: primaryColor,
-                  secondaryColor: secondaryColor,
-                ),
-              Expanded(child: _Slides(slides: slides)),
-              if (!dotsUp)
-                _Dots(
-                  totalSlides: slides.length,
-                  primaryColor: primaryColor,
-                  secondaryColor: secondaryColor,
-                ),
-            ],
+          child: Builder(
+            builder: (BuildContext context) {
+              Provider.of<_SlideshowModel>(context).primaryColor = primaryColor;
+              Provider.of<_SlideshowModel>(context).secondaryColor =
+                  secondaryColor;
+
+              return _CreateSlideshowStructure(dotsUp: dotsUp, slides: slides);
+            },
           ),
         ),
       ),
+    );
+  }
+}
+
+class _CreateSlideshowStructure extends StatelessWidget {
+  const _CreateSlideshowStructure({
+    super.key,
+    required this.dotsUp,
+    required this.slides,
+  });
+
+  final bool dotsUp;
+  final List<Widget> slides;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        if (dotsUp) _Dots(totalSlides: slides.length),
+        Expanded(child: _Slides(slides: slides)),
+        if (!dotsUp) _Dots(totalSlides: slides.length),
+      ],
     );
   }
 }
@@ -62,7 +74,7 @@ class _SlidesState extends State<_Slides> {
   @override
   void initState() {
     pageViewController.addListener(() {
-      Provider.of<SliderModel>(context, listen: false).currentPage =
+      Provider.of<_SlideshowModel>(context, listen: false).currentPage =
           pageViewController.page!;
     });
 
@@ -104,15 +116,9 @@ class _Slide extends StatelessWidget {
 }
 
 class _Dots extends StatelessWidget {
-  const _Dots({
-    required this.totalSlides,
-    required this.primaryColor,
-    required this.secondaryColor,
-  });
+  const _Dots({required this.totalSlides});
 
   final int totalSlides;
-  final Color primaryColor;
-  final Color secondaryColor;
 
   @override
   Widget build(BuildContext context) {
@@ -121,28 +127,20 @@ class _Dots extends StatelessWidget {
       height: 70,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(
-            totalSlides,
-            (i) => _Dot(
-                  i,
-                  primaryColor,
-                  secondaryColor,
-                )),
+        children: List.generate(totalSlides, (i) => _Dot(i)),
       ),
     );
   }
 }
 
 class _Dot extends StatelessWidget {
-  const _Dot(this.index, this.primaryColor, this.secondaryColor);
+  const _Dot(this.index);
 
   final int index;
-  final Color primaryColor;
-  final Color secondaryColor;
 
   @override
   Widget build(BuildContext context) {
-    final pageViewIndex = Provider.of<SliderModel>(context).currentPage;
+    final ssModel = Provider.of<_SlideshowModel>(context);
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
@@ -150,12 +148,36 @@ class _Dot extends StatelessWidget {
       height: 12,
       margin: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
-        color: ((pageViewIndex >= (index - 0.5)) &&
-                (pageViewIndex < (index + 0.5)))
-            ? primaryColor
-            : secondaryColor,
+        color: ((ssModel.currentPage >= (index - 0.5)) &&
+                (ssModel.currentPage < (index + 0.5)))
+            ? ssModel.primaryColor
+            : ssModel.secondaryColor,
         shape: BoxShape.circle,
       ),
     );
+  }
+}
+
+class _SlideshowModel with ChangeNotifier {
+  double _currentPage = 0;
+  Color _primaryColor = Colors.blue;
+  Color _secondaryColor = Colors.grey;
+
+  double get currentPage => _currentPage;
+  set currentPage(double page) {
+    _currentPage = page;
+    notifyListeners();
+  }
+
+  Color get primaryColor => _primaryColor;
+  set primaryColor(Color color) {
+    _primaryColor = color;
+    notifyListeners();
+  }
+
+  Color get secondaryColor => _secondaryColor;
+  set secondaryColor(Color color) {
+    _secondaryColor = color;
+    notifyListeners();
   }
 }

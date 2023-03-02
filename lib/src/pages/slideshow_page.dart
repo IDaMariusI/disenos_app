@@ -12,9 +12,9 @@ class SlideshowPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.purple,
       body: Slideshow(
-        dotsUp: true,
-        primaryColor: Colors.blue,
-        secondaryColor: Colors.white,
+        dotsUp: false,
+        primaryColor: const Color(0xffFF5A7E),
+        secondaryColor: Colors.grey,
         slides: <Widget>[
           SvgPicture.asset('assets/svgs/slide-1.svg'),
           SvgPicture.asset('assets/svgs/slide-2.svg'),
