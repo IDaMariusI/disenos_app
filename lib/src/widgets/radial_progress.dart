@@ -80,13 +80,13 @@ class _MyRadialProgress extends CustomPainter {
     this.percentage,
     this.primaryColor,
     this.secondaryColor,
-    this.primaryThinkness,
-    this.secondaryThinkness,
+    this.primaryThickness,
+    this.secondaryThickness,
   );
 
   double percentage;
-  final double primaryThinkness;
-  final double secondaryThinkness;
+  final double primaryThickness;
+  final double secondaryThickness;
   final Color primaryColor;
   final Color secondaryColor;
 
@@ -104,7 +104,7 @@ class _MyRadialProgress extends CustomPainter {
 
     //Complete Circle
     final paintCircle = Paint()
-      ..strokeWidth = secondaryThinkness
+      ..strokeWidth = secondaryThickness
       ..color = secondaryColor
       ..style = PaintingStyle.stroke;
     final center = Offset(size.width * 0.5, size.height / 2);
@@ -114,7 +114,7 @@ class _MyRadialProgress extends CustomPainter {
 
     //Arc
     final paintArc = Paint()
-      ..strokeWidth = primaryThinkness
+      ..strokeWidth = primaryThickness
       //..color = primaryColor
       ..shader = gradient.createShader(rect)
       ..strokeCap = StrokeCap.round
