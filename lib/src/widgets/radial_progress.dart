@@ -102,7 +102,6 @@ class _MyRadialProgress extends CustomPainter {
 
     final Rect rect = Rect.fromCircle(center: const Offset(0, 0), radius: 180);
 
-    //Complete Circle
     final paintCircle = Paint()
       ..strokeWidth = secondaryThickness
       ..color = secondaryColor
@@ -112,15 +111,12 @@ class _MyRadialProgress extends CustomPainter {
 
     canvas.drawCircle(center, radius, paintCircle);
 
-    //Arc
     final paintArc = Paint()
       ..strokeWidth = primaryThickness
-      //..color = primaryColor
       ..shader = gradient.createShader(rect)
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
 
-    //Fill
     double arcAngle = 2 * pi * (percentage / 100);
 
     canvas.drawArc(

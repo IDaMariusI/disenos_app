@@ -37,7 +37,6 @@ class _SlidesState extends State<_Slides> {
   @override
   void initState() {
     pageViewController.addListener(() {
-      //Update Provider/SliderModel
       Provider.of<SliderModel>(context, listen: false).currentPage =
           pageViewController.page!;
     });
@@ -54,15 +53,13 @@ class _SlidesState extends State<_Slides> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: PageView(
-        controller: pageViewController,
-        children: const [
-          _Slide('assets/svgs/slide-1.svg'),
-          _Slide('assets/svgs/slide-2.svg'),
-          _Slide('assets/svgs/slide-3.svg'),
-        ],
-      ),
+    return PageView(
+      controller: pageViewController,
+      children: const [
+        _Slide('assets/svgs/slide-1.svg'),
+        _Slide('assets/svgs/slide-2.svg'),
+        _Slide('assets/svgs/slide-3.svg'),
+      ],
     );
   }
 }
@@ -86,12 +83,12 @@ class _Slide extends StatelessWidget {
 class _Dots extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 70,
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: const [
           _Dot(0),
           _Dot(1),
           _Dot(2),

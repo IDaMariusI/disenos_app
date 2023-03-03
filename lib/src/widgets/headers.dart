@@ -163,12 +163,10 @@ class _CurvedHeaderPainter extends CustomPainter {
     final paint = Paint();
     final path = Path();
 
-    //Properties
     paint.color = const Color(0xff615AAB);
     paint.style = PaintingStyle.fill;
     paint.strokeWidth = 5;
 
-    //Draw with path and pencil
     path.lineTo(0, size.height * 0.25);
     path.quadraticBezierTo(
       size.width * 0.50,
@@ -206,12 +204,10 @@ class _WavesHeaderPainter extends CustomPainter {
     final paint = Paint();
     final path = Path();
 
-    //Properties
     paint.color = const Color(0xff615AAB);
     paint.style = PaintingStyle.fill;
     paint.strokeWidth = 5;
 
-    //Draw with path and pencil
     path.lineTo(0, size.height * 0.25);
     path.quadraticBezierTo(
       size.width * 0.25,
@@ -271,11 +267,9 @@ class _WavesGradientHeaderPainter extends CustomPainter {
     final paint = Paint()..shader = gradient.createShader(rect);
     final path = Path();
 
-    //Properties
     paint.style = PaintingStyle.fill;
     paint.strokeWidth = 5;
 
-    //Draw with path and pencil
     path.lineTo(0, size.height * 0.25);
     path.quadraticBezierTo(
       size.width * 0.25,
