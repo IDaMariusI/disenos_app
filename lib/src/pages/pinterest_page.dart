@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import 'package:disenos_app/src/widgets/widgets.dart';
+
 class PinterestPage extends StatelessWidget {
   const PinterestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PinterestGrid(),
+      body: PinterestMenu(),
     );
   }
 }
@@ -21,7 +23,7 @@ class PinterestGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MasonryGridView.count(
-      crossAxisCount: 4,
+      crossAxisCount: 2,
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
       itemBuilder: (context, index) {
