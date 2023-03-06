@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 class PinterestPage extends StatelessWidget {
   const PinterestPage({super.key});
 
@@ -18,17 +20,14 @@ class PinterestGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 1,
-          mainAxisSpacing: 1,
-        ),
-        itemCount: items.length,
-        itemBuilder: (BuildContext context, index) {
-          return _PinterestItem(index: index);
-        });
+    return MasonryGridView.count(
+      crossAxisCount: 4,
+      mainAxisSpacing: 4.0,
+      crossAxisSpacing: 4.0,
+      itemBuilder: (context, index) {
+        return _PinterestItem(index: index);
+      },
+    );
   }
 }
 
@@ -39,7 +38,10 @@ class _PinterestItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double height = (index % 5 + 1) * 100;
+
     return Container(
+      height: height,
       margin: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
           color: Colors.blue,
