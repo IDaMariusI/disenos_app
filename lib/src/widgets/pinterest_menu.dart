@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PinterestButton {
   PinterestButton({required this.onPressed, required this.icon});
@@ -36,7 +37,12 @@ class PinterestMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: _PinterestMenuBackground(child: _MenuItems(menuItems: items)),
+      child: ChangeNotifierProvider(
+        create: (_) => _MenuModel(),
+        child: _PinterestMenuBackground(
+          child: _MenuItems(menuItems: items),
+        ),
+      ),
     );
   }
 }
@@ -92,16 +98,43 @@ class _PinterestMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectedItem = Provider.of<_MenuModel>(context).selectedIndex;
+
+    double size;
+    Color color;
+
+    if (selectedItem == index) {
+      size = 35.0;
+      color = Colors.black;
+    } else {
+      size = 25.0;
+      color = Colors.blueGrey;
+    }
+
     return GestureDetector(
-      onTap: item.onPressed,
+      onTap: () {
+        Provider.of<_MenuModel>(context, listen: false).selectedIndex = index;
+        item.onPressed();
+      },
       behavior: HitTestBehavior.translucent,
       child: Container(
         child: Icon(
           item.icon,
-          size: 25,
-          color: Colors.blueGrey,
+          size: size,
+          color: color,
         ),
       ),
     );
+  }
+}
+
+class _MenuModel with ChangeNotifier {
+  int _selectedIndex = 0;
+
+  int get selectedIndex => _selectedIndex;
+
+  set selectedIndex(int index) {
+    _selectedIndex = index;
+    notifyListeners();
   }
 }
