@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
 
 import 'package:disenos_app/src/widgets/widgets.dart';
 
@@ -9,12 +10,15 @@ class PinterestPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          PinterestGrid(),
-          _PinterestMenuLocation(),
-        ],
+    return ChangeNotifierProvider(
+      create: (_) => _MenuModel(),
+      child: Scaffold(
+        body: Stack(
+          children: <Widget>[
+            PinterestGrid(),
+            _PinterestMenuLocation(),
+          ],
+        ),
       ),
     );
   }
@@ -24,13 +28,14 @@ class _PinterestMenuLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final show = Provider.of<_MenuModel>(context).show;
 
     return Positioned(
       bottom: 30,
       child: Container(
         width: screenWidth,
         child: Align(
-          child: PinterestMenu(),
+          child: PinterestMenu(show: show),
         ),
       ),
     );
@@ -53,7 +58,10 @@ class _PinterestGridState extends State<PinterestGrid> {
   void initState() {
     scrollController.addListener(() {
       if (scrollController.offset > previusScroll) {
-      } else {}
+        Provider.of<_MenuModel>(context, listen: false).show = false;
+      } else {
+        Provider.of<_MenuModel>(context, listen: false).show = true;
+      }
 
       previusScroll = scrollController.offset;
     });
@@ -102,5 +110,16 @@ class _PinterestItem extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _MenuModel with ChangeNotifier {
+  bool _show = true;
+
+  bool get show => _show;
+
+  set show(bool value) {
+    _show = value;
+    notifyListeners();
   }
 }

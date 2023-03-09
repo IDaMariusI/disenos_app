@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
 class PinterestButton {
@@ -9,28 +10,30 @@ class PinterestButton {
 }
 
 class PinterestMenu extends StatelessWidget {
-  PinterestMenu({super.key});
+  PinterestMenu({super.key, this.show = true});
+
+  final bool show;
 
   final List<PinterestButton> items = [
     PinterestButton(
         icon: Icons.pie_chart,
         onPressed: () {
-          print('Pie Chart');
+          //print('Pie Chart');
         }),
     PinterestButton(
         icon: Icons.search,
         onPressed: () {
-          print('Icon Search');
+          //print('Icon Search');
         }),
     PinterestButton(
         icon: Icons.notifications,
         onPressed: () {
-          print('Notifications');
+          //print('Notifications');
         }),
     PinterestButton(
         icon: Icons.supervised_user_circle,
         onPressed: () {
-          print('Supervised User Circle');
+          //print('Supervised User Circle');
         }),
   ];
 
@@ -38,8 +41,12 @@ class PinterestMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => _MenuModel(),
-      child: _PinterestMenuBackground(
-        child: _MenuItems(menuItems: items),
+      child: AnimatedOpacity(
+        duration: const Duration(milliseconds: 250),
+        opacity: (show) ? 1 : 0,
+        child: _PinterestMenuBackground(
+          child: _MenuItems(menuItems: items),
+        ),
       ),
     );
   }
