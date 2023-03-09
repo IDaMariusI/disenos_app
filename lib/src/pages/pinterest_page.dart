@@ -37,14 +37,39 @@ class _PinterestMenuLocation extends StatelessWidget {
   }
 }
 
-class PinterestGrid extends StatelessWidget {
-  PinterestGrid({super.key});
+class PinterestGrid extends StatefulWidget {
+  const PinterestGrid({super.key});
 
+  @override
+  State<PinterestGrid> createState() => _PinterestGridState();
+}
+
+class _PinterestGridState extends State<PinterestGrid> {
   final List<int> items = List.generate(200, (index) => index);
+  ScrollController scrollController = ScrollController();
+  double previusScroll = 0.0;
+
+  @override
+  void initState() {
+    scrollController.addListener(() {
+      if (scrollController.offset > previusScroll) {
+      } else {}
+
+      previusScroll = scrollController.offset;
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MasonryGridView.count(
+      controller: scrollController,
       crossAxisCount: 2,
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
