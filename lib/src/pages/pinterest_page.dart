@@ -15,7 +15,7 @@ class PinterestPage extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: <Widget>[
-            PinterestGrid(),
+            const PinterestGrid(),
             _PinterestMenuLocation(),
           ],
         ),
@@ -32,7 +32,7 @@ class _PinterestMenuLocation extends StatelessWidget {
 
     return Positioned(
       bottom: 30,
-      child: Container(
+      child: SizedBox(
         width: screenWidth,
         child: Align(
           child: PinterestMenu(
@@ -40,6 +40,28 @@ class _PinterestMenuLocation extends StatelessWidget {
             // backgroundColor: Colors.red,
             // activeColor: Colors.red,
             // inactiveColor: Colors.blue,
+            items: <PinterestButton>[
+              PinterestButton(
+                  icon: Icons.pie_chart,
+                  onPressed: () {
+                    //print('Pie Chart');
+                  }),
+              PinterestButton(
+                  icon: Icons.search,
+                  onPressed: () {
+                    //print('Icon Search');
+                  }),
+              PinterestButton(
+                  icon: Icons.notifications,
+                  onPressed: () {
+                    //print('Notifications');
+                  }),
+              PinterestButton(
+                  icon: Icons.supervised_user_circle,
+                  onPressed: () {
+                    //print('Supervised User Circle');
+                  }),
+            ],
           ),
         ),
       ),
