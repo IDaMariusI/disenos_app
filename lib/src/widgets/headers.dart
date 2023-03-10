@@ -322,21 +322,14 @@ class IconHeader extends StatelessWidget {
         Positioned(
           top: -50,
           left: -70,
-          child: FaIcon(
-            icon,
-            size: 200,
-            color: Colors.white.withOpacity(0.2),
-          ),
+          child: FaIcon(icon, size: 200, color: Colors.white.withOpacity(0.2)),
         ),
         Column(
           children: <Widget>[
             const SizedBox(height: 80, width: double.infinity),
             Text(
               subtitle,
-              style: TextStyle(
-                fontSize: 20,
-                color: whiteColor,
-              ),
+              style: TextStyle(fontSize: 20, color: whiteColor),
             ),
             const SizedBox(height: 20),
             Text(
@@ -348,11 +341,7 @@ class IconHeader extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            FaIcon(
-              icon,
-              size: 80,
-              color: Colors.white,
-            ),
+            FaIcon(icon, size: 80, color: Colors.white),
           ],
         ),
       ],
