@@ -10,13 +10,24 @@ class EmergencyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: IconHeader(
-        icon: FontAwesomeIcons.plus,
-        title: 'Asistencia Médica',
-        subtitle: 'Haz solicitado',
-        color1: Color(0xff526BF6),
-        color2: Color(0xff67ACF2),
+      body: Center(
+        child: FatButton(),
       ),
+    );
+  }
+}
+
+class PageHeader extends StatelessWidget {
+  const PageHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const IconHeader(
+      icon: FontAwesomeIcons.plus,
+      title: 'Asistencia Médica',
+      subtitle: 'Haz solicitado',
+      color1: Color(0xff526BF6),
+      color2: Color(0xff67ACF2),
     );
   }
 }
