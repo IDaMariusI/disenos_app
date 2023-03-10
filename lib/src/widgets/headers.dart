@@ -297,7 +297,20 @@ class _WavesGradientHeaderPainter extends CustomPainter {
 }
 
 class IconHeader extends StatelessWidget {
-  const IconHeader({super.key});
+  const IconHeader({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    this.color1 = const Color(0xff526BF6),
+    this.color2 = const Color(0xff67ACF2),
+  });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final Color color1;
+  final Color color2;
 
   @override
   Widget build(BuildContext context) {
@@ -305,12 +318,12 @@ class IconHeader extends StatelessWidget {
 
     return Stack(
       children: <Widget>[
-        _IconHeaderBackground(),
+        _IconHeaderBackground(color1: color1, color2: color2),
         Positioned(
           top: -50,
           left: -70,
           child: FaIcon(
-            FontAwesomeIcons.plus,
+            icon,
             size: 200,
             color: Colors.white.withOpacity(0.2),
           ),
@@ -319,7 +332,7 @@ class IconHeader extends StatelessWidget {
           children: <Widget>[
             const SizedBox(height: 80, width: double.infinity),
             Text(
-              'Haz solicitado',
+              subtitle,
               style: TextStyle(
                 fontSize: 20,
                 color: whiteColor,
@@ -327,7 +340,7 @@ class IconHeader extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              'Asistencia Médica',
+              title,
               style: TextStyle(
                 fontSize: 25,
                 color: whiteColor,
@@ -335,8 +348,8 @@ class IconHeader extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const FaIcon(
-              FontAwesomeIcons.plus,
+            FaIcon(
+              icon,
               size: 80,
               color: Colors.white,
             ),
@@ -348,19 +361,24 @@ class IconHeader extends StatelessWidget {
 }
 
 class _IconHeaderBackground extends StatelessWidget {
+  const _IconHeaderBackground({required this.color1, required this.color2});
+
+  final Color color1;
+  final Color color2;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 300,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(100)),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(100)),
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: <Color>[
-            Color(0xff526BF6),
-            Color(0xff67ACF2),
+            color1,
+            color2,
           ],
         ),
       ),
