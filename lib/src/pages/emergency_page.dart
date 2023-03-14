@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:animate_do/animate_do.dart';
 
 import 'package:disenos_app/src/widgets/widgets.dart';
 
@@ -94,15 +95,18 @@ class EmergencyPage extends StatelessWidget {
     ];
 
     List<Widget> itemMap = items
-        .map((item) => FatButton(
+        .map(
+          (item) => FadeInLeft(
+            duration: const Duration(milliseconds: 250),
+            child: FatButton(
               icon: item.icon,
               text: item.text,
               color1: item.color1,
               color2: item.color2,
-              onPress: () {
-                print(item.text);
-              },
-            ))
+              onPress: () {},
+            ),
+          ),
+        )
         .toList();
 
     return Scaffold(
@@ -166,7 +170,7 @@ class FatButtonTemp extends StatelessWidget {
       color1: const Color(0xff6989F5),
       color2: const Color(0xff906EF5),
       onPress: () {
-        print('Click');
+        //print('Click');
       },
     );
   }
