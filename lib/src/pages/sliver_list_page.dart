@@ -53,30 +53,46 @@ class _Title extends StatelessWidget {
 }
 
 class _ThingsList extends StatelessWidget {
+  final items = [
+    const _ListItem('Orange', Color(0xffF08F66)),
+    const _ListItem('Family', Color(0xffF2A38A)),
+    const _ListItem('Subscriptions', Color(0xffF7CDD5)),
+    const _ListItem('Books', Color(0xffFCEBAF)),
+    const _ListItem('Orange', Color(0xffF08F66)),
+    const _ListItem('Family', Color(0xffF2A38A)),
+    const _ListItem('Subscriptions', Color(0xffF7CDD5)),
+    const _ListItem('Books', Color(0xffFCEBAF)),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 20,
-      itemBuilder: (BuildContext context, int index) => _ListItem(),
+      itemCount: items.length,
+      itemBuilder: (BuildContext context, int index) => items[index],
     );
   }
 }
 
 class _ListItem extends StatelessWidget {
+  const _ListItem(this.title, this.color);
+
+  final String title;
+  final Color color;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.centerLeft,
-      padding: const EdgeInsets.all(30),
       height: 130,
       margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: Colors.orange,
+        color: color,
         borderRadius: BorderRadius.circular(30),
       ),
-      child: const Text(
-        'Orangen',
-        style: TextStyle(
+      child: Text(
+        title,
+        style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
           fontSize: 20,
