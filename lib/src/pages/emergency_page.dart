@@ -111,18 +111,46 @@ class EmergencyPage extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(top: 200),
             child: ListView(
-              children: <Widget>[const SizedBox(height: 80), ...itemMap],
+              physics: const BouncingScrollPhysics(),
+              children: <Widget>[
+                const SizedBox(height: 80),
+                ...itemMap,
+              ],
             ),
           ),
-          const IconHeader(
-            icon: FontAwesomeIcons.plus,
-            title: 'Asistencia Médica',
-            subtitle: 'Haz solicitado',
-            color1: Color(0xff526BF6),
-            color2: Color(0xff67ACF2),
-          ),
+          _Header(),
         ],
       ),
+    );
+  }
+}
+
+class _Header extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        const IconHeader(
+          icon: FontAwesomeIcons.plus,
+          title: 'Asistencia Médica',
+          subtitle: 'Haz solicitado',
+          color1: Color(0xff526BF6),
+          color2: Color(0xff67ACF2),
+        ),
+        Positioned(
+          right: 0,
+          top: 45,
+          child: RawMaterialButton(
+            onPressed: () {},
+            shape: const CircleBorder(),
+            padding: const EdgeInsets.all(15.0),
+            child: const FaIcon(
+              FontAwesomeIcons.ellipsisVertical,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
