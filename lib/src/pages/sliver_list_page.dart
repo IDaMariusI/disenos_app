@@ -6,7 +6,16 @@ class SliverListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _MainScroll(),
+      body: Stack(
+        children: <Widget>[
+          _MainScroll(),
+          Positioned(
+            bottom: -10,
+            right: 0,
+            child: _NewListButton(),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -168,6 +177,38 @@ class _ListItem extends StatelessWidget {
           color: Colors.white,
           fontWeight: FontWeight.bold,
           fontSize: 20,
+        ),
+      ),
+    );
+  }
+}
+
+class _NewListButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+      backgroundColor: const Color(0xffED6762),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(50)),
+      ),
+    );
+
+    return ButtonTheme(
+      minWidth: size.width * 0.9,
+      height: 100,
+      child: ElevatedButton(
+        style: raisedButtonStyle,
+        onPressed: () {},
+        child: const Text(
+          'CREATE NEW LIST',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 3,
+          ),
         ),
       ),
     );
