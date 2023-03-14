@@ -27,15 +27,59 @@ class _MainScroll extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        const SliverAppBar(
-          backgroundColor: Colors.red,
-          elevation: 0,
+        SliverPersistentHeader(
           floating: true,
-          title: Text('SliverAppBar'),
+          delegate: _SliverCustomHeaderDelegate(
+            maxHeight: 200,
+            minHeight: 170,
+            child: Container(
+              alignment: Alignment.centerLeft,
+              color: Colors.white,
+              child: _Title(),
+            ),
+          ),
         ),
-        SliverList(delegate: SliverChildListDelegate(items)),
+        SliverList(
+          delegate: SliverChildListDelegate(
+            [
+              ...items,
+              const SizedBox(height: 100),
+            ],
+          ),
+        ),
       ],
     );
+  }
+}
+
+class _SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
+  _SliverCustomHeaderDelegate({
+    required this.minHeight,
+    required this.maxHeight,
+    required this.child,
+  });
+
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(child: child);
+  }
+
+  @override
+  double get maxExtent => (minHeight > maxHeight) ? minHeight : maxHeight;
+
+  @override
+  double get minExtent => (minHeight < maxHeight) ? minHeight : maxHeight;
+
+  @override
+  bool shouldRebuild(_SliverCustomHeaderDelegate oldDelegate) {
+    return (maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child);
   }
 }
 
