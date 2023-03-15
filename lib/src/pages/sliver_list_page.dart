@@ -68,8 +68,7 @@ class _SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
     required this.child,
   });
 
-  final double minHeight;
-  final double maxHeight;
+  final double minHeight, maxHeight;
   final Widget child;
 
   @override
@@ -116,40 +115,17 @@ class _Title extends StatelessWidget {
                 color: const Color(0xffF7CDD5),
               ),
             ),
-            Container(
-              child: const Text(
-                'List',
-                style: TextStyle(
-                  color: Color(0xffD93A30),
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                ),
+            const Text(
+              'List',
+              style: TextStyle(
+                color: Color(0xffD93A30),
+                fontSize: 50,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],
         ),
       ],
-    );
-  }
-}
-
-class _ThingsList extends StatelessWidget {
-  final items = [
-    const _ListItem('Orange', Color(0xffF08F66)),
-    const _ListItem('Family', Color(0xffF2A38A)),
-    const _ListItem('Subscriptions', Color(0xffF7CDD5)),
-    const _ListItem('Books', Color(0xffFCEBAF)),
-    const _ListItem('Orange', Color(0xffF08F66)),
-    const _ListItem('Family', Color(0xffF2A38A)),
-    const _ListItem('Subscriptions', Color(0xffF7CDD5)),
-    const _ListItem('Books', Color(0xffFCEBAF)),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: items.length,
-      itemBuilder: (BuildContext context, int index) => items[index],
     );
   }
 }

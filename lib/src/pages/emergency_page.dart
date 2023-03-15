@@ -6,12 +6,11 @@ import 'package:animate_do/animate_do.dart';
 import 'package:disenos_app/src/widgets/widgets.dart';
 
 class ItemBoton {
+  ItemBoton(this.icon, this.text, this.color1, this.color2);
+
+  final Color color1, color2;
   final IconData icon;
   final String text;
-  final Color color1;
-  final Color color2;
-
-  ItemBoton(this.icon, this.text, this.color1, this.color2);
 }
 
 class EmergencyPage extends StatelessWidget {

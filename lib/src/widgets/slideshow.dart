@@ -17,10 +17,8 @@ class Slideshow extends StatelessWidget {
 
   final List<Widget> slides;
   final bool dotsUp;
-  final Color primaryColor;
-  final Color secondaryColor;
-  final double primaryBullet;
-  final double secondaryBullet;
+  final Color primaryColor, secondaryColor;
+  final double primaryBullet, secondaryBullet;
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +29,13 @@ class Slideshow extends StatelessWidget {
           child: Builder(
             builder: (BuildContext context) {
               Provider.of<_SlideshowModel>(context).primaryColor = primaryColor;
+              
               Provider.of<_SlideshowModel>(context).secondaryColor =
                   secondaryColor;
 
               Provider.of<_SlideshowModel>(context).primaryBullet =
                   primaryBullet;
+              
               Provider.of<_SlideshowModel>(context).secondaryBullet =
                   secondaryBullet;
 

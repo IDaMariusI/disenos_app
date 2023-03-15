@@ -12,10 +12,9 @@ class FatButton extends StatelessWidget {
     required this.onPress,
   });
 
+  final Color color1, color2;
   final IconData icon;
   final String text;
-  final Color color1;
-  final Color color2;
   final Function() onPress;
 
   @override
@@ -50,9 +49,8 @@ class FatButton extends StatelessWidget {
 class _FatButtonBackground extends StatelessWidget {
   const _FatButtonBackground(this.icon, this.color1, this.color2);
 
+  final Color color1, color2;
   final IconData icon;
-  final Color color1;
-  final Color color2;
 
   @override
   Widget build(BuildContext context) {

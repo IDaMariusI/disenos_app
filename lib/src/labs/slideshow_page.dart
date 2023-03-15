@@ -83,12 +83,12 @@ class _Slide extends StatelessWidget {
 class _Dots extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: double.infinity,
       height: 70,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           _Dot(0),
           _Dot(1),
           _Dot(2),

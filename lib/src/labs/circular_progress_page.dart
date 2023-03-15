@@ -12,8 +12,7 @@ class CircularProgressPage extends StatefulWidget {
 
 class _CircularProgressPageState extends State<CircularProgressPage>
     with SingleTickerProviderStateMixin {
-  double currentPercentage = 0.0;
-  double newPercentage = 0.0;
+  double currentPercentage = 0.0, newPercentage = 0.0;
 
   late AnimationController controller;
 

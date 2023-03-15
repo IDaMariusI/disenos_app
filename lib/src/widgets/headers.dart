@@ -306,11 +306,9 @@ class IconHeader extends StatelessWidget {
     this.color2 = const Color(0xff67ACF2),
   });
 
+  final Color color1, color2;
   final IconData icon;
-  final String title;
-  final String subtitle;
-  final Color color1;
-  final Color color2;
+  final String title, subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -352,8 +350,7 @@ class IconHeader extends StatelessWidget {
 class _IconHeaderBackground extends StatelessWidget {
   const _IconHeaderBackground({required this.color1, required this.color2});
 
-  final Color color1;
-  final Color color2;
+  final Color color1, color2;
 
   @override
   Widget build(BuildContext context) {

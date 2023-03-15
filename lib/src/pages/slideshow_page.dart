@@ -9,10 +9,10 @@ class SlideshowPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.purple,
       body: Column(
-        children: const <Widget>[
+        children: <Widget>[
           Expanded(child: MySlideshow()),
           Expanded(child: MySlideshow()),
         ],

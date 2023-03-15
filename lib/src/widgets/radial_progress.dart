@@ -12,11 +12,8 @@ class RadialProgress extends StatefulWidget {
     this.secondaryThickness = 4.0,
   });
 
-  final double percentage;
-  final double primaryThickness;
-  final double secondaryThickness;
-  final Color primaryColor;
-  final Color secondaryColor;
+  final double percentage, primaryThickness, secondaryThickness;
+  final Color primaryColor, secondaryColor;
 
   @override
   State<RadialProgress> createState() => _RadialProgressState();
@@ -85,10 +82,8 @@ class _MyRadialProgress extends CustomPainter {
   );
 
   double percentage;
-  final double primaryThickness;
-  final double secondaryThickness;
-  final Color primaryColor;
-  final Color secondaryColor;
+  final double primaryThickness, secondaryThickness;
+  final Color primaryColor, secondaryColor;
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -20,9 +20,7 @@ class PinterestMenu extends StatelessWidget {
   });
 
   final bool show;
-  final Color backgroundColor;
-  final Color activeColor;
-  final Color inactiveColor;
+  final Color activeColor, backgroundColor, inactiveColor;
   final List<PinterestButton> items;
 
   @override
