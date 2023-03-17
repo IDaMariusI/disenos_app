@@ -5,18 +5,23 @@ class ThemeChanger extends ChangeNotifier {
   bool _customTheme = false;
 
   late ThemeData _currentTheme;
+  late ThemeData _theme;
 
   ThemeChanger(int theme) {
     switch (theme) {
       case 1: // Light
         _darkTheme = false;
         _customTheme = false;
-        _currentTheme = ThemeData.light();
+        _theme = ThemeData.light();
+        _currentTheme = _theme;
         break;
       case 2: // Dark
         _darkTheme = true;
         _customTheme = false;
-        _currentTheme = ThemeData.dark();
+        _theme = ThemeData.dark();
+        _currentTheme = _theme.copyWith(
+          colorScheme: _theme.colorScheme.copyWith(secondary: Colors.pink),
+        );
         break;
       case 3:
         _darkTheme = false;
@@ -25,7 +30,8 @@ class ThemeChanger extends ChangeNotifier {
       default:
         _darkTheme = false;
         _customTheme = false;
-        _currentTheme = ThemeData.light();
+        _theme = ThemeData.light();
+        _currentTheme = _theme;
     }
   }
 
@@ -38,9 +44,13 @@ class ThemeChanger extends ChangeNotifier {
     _darkTheme = value;
 
     if (value) {
-      _currentTheme = ThemeData.dark();
+      _theme = ThemeData.dark();
+      _currentTheme = _theme.copyWith(
+        colorScheme: _theme.colorScheme.copyWith(secondary: Colors.pink),
+      );
     } else {
-      _currentTheme = ThemeData.light();
+      _theme = ThemeData.light();
+      _currentTheme = _theme;
     }
 
     notifyListeners();
@@ -51,9 +61,18 @@ class ThemeChanger extends ChangeNotifier {
     _customTheme = value;
 
     if (value) {
-      _currentTheme = ThemeData.light();
+      _theme = ThemeData.dark();
+      _currentTheme = _theme.copyWith(
+        scaffoldBackgroundColor: const Color(0xff16202B),
+        textTheme: const TextTheme(bodyLarge: TextStyle(color: Colors.white)),
+        colorScheme: _theme.colorScheme.copyWith(
+          secondary: const Color(0xff48A0EB),
+          primary: Colors.white,
+        ),
+      );
     } else {
-      _currentTheme = ThemeData.light();
+      _theme = ThemeData.light();
+      _currentTheme = _theme;
     }
 
     notifyListeners();
