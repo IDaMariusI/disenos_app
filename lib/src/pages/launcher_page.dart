@@ -24,14 +24,24 @@ class LauncherPage extends StatelessWidget {
 class _OptionsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeChanger>(context).currentTheme;
+
     return ListView.separated(
       itemCount: pageRoutes.length,
       physics: const BouncingScrollPhysics(),
-      separatorBuilder: (context, index) => const Divider(color: Colors.blue),
+      separatorBuilder: (context, index) => Divider(
+        color: currentTheme.primaryColorLight,
+      ),
       itemBuilder: (context, index) => ListTile(
-        leading: FaIcon(pageRoutes[index].icon, color: Colors.blue),
+        leading: FaIcon(
+          pageRoutes[index].icon,
+          color: currentTheme.colorScheme.secondary,
+        ),
         title: Text(pageRoutes[index].title),
-        trailing: const Icon(Icons.chevron_right, color: Colors.blue),
+        trailing: Icon(
+          Icons.chevron_right,
+          color: currentTheme.colorScheme.secondary,
+        ),
         onTap: () {
           Navigator.push(
             context,
@@ -47,6 +57,7 @@ class _MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTheme = Provider.of<ThemeChanger>(context);
+    final accentColor = appTheme.currentTheme.colorScheme.secondary;
 
     return Drawer(
       child: Container(
@@ -56,18 +67,21 @@ class _MainMenu extends StatelessWidget {
               child: Container(
                 height: 200,
                 width: double.infinity,
-                child: const CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text('MV', style: TextStyle(fontSize: 50)),
+                child: CircleAvatar(
+                  backgroundColor: accentColor,
+                  child: const Text('MV', style: TextStyle(fontSize: 50)),
                 ),
               ),
             ),
             Expanded(child: _OptionsList()),
             ListTile(
-              leading: const Icon(Icons.lightbulb_outline, color: Colors.blue),
+              leading: Icon(
+                Icons.lightbulb_outline,
+                color: accentColor,
+              ),
               title: const Text('Dark Mode'),
               trailing: Switch.adaptive(
-                activeColor: Colors.blue,
+                activeColor: accentColor,
                 value: appTheme.darkTheme,
                 onChanged: (value) => appTheme.darkTheme = value,
               ),
@@ -78,11 +92,10 @@ class _MainMenu extends StatelessWidget {
               left: false,
               right: false,
               child: ListTile(
-                leading:
-                    const Icon(Icons.add_to_home_screen, color: Colors.blue),
+                leading: Icon(Icons.add_to_home_screen, color: accentColor),
                 title: const Text('Custom Theme'),
                 trailing: Switch.adaptive(
-                  activeColor: Colors.blue,
+                  activeColor: accentColor,
                   value: appTheme.customTheme,
                   onChanged: (value) => appTheme.customTheme = value,
                 ),
