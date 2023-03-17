@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:disenos_app/src/pages/pages.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(const MyApp());
+import 'package:disenos_app/src/pages/pages.dart';
+import 'package:disenos_app/src/theme/theme.dart';
+
+void main() => runApp(
+      ChangeNotifierProvider(
+        create: (_) => ThemeChanger(),
+        child: const MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
