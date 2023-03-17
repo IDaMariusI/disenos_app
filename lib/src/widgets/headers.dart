@@ -188,25 +188,31 @@ class _CurvedHeaderPainter extends CustomPainter {
 }
 
 class WavesHeader extends StatelessWidget {
-  const WavesHeader({super.key});
+  const WavesHeader({super.key, required this.color});
+
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: double.infinity,
       width: double.infinity,
-      child: CustomPaint(painter: _WavesHeaderPainter()),
+      child: CustomPaint(painter: WavesHeaderPainter(color)),
     );
   }
 }
 
-class _WavesHeaderPainter extends CustomPainter {
+class WavesHeaderPainter extends CustomPainter {
+  WavesHeaderPainter(this.color);
+
+  final Color color;
+
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
     final path = Path();
 
-    paint.color = const Color(0xff615AAB);
+    paint.color = color; //Color(0xff615AAB);
     paint.style = PaintingStyle.fill;
     paint.strokeWidth = 5;
 

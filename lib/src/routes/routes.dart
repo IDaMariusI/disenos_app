@@ -7,6 +7,7 @@ import 'package:disenos_app/src/pages/pages.dart';
 final pageRoutes = <_Route>[
   _Route(FontAwesomeIcons.slideshare, 'SlideShow', const SlideshowPage()),
   _Route(FontAwesomeIcons.truckMedical, 'Emergency', const EmergencyPage()),
+  _Route(FontAwesomeIcons.heading, 'Headers', const HeadersPage()),
   _Route(
     FontAwesomeIcons.peopleCarryBox,
     'Animated Square',

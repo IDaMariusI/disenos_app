@@ -16,7 +16,7 @@ class SlideshowPage extends StatelessWidget {
       body: Column(
         children: const <Widget>[
           Expanded(child: MySlideshow()),
-          Expanded(child: MySlideshow()),
+          //Expanded(child: MySlideshow()),
         ],
       ),
     );
@@ -28,9 +28,10 @@ class MySlideshow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const Color color = Color(0xffFF5A7E);
+
     final appTheme = Provider.of<ThemeChanger>(context);
     final accentColor = appTheme.currentTheme.colorScheme.secondary;
-    const Color color = Color(0xffFF5A7E);
 
     return Slideshow(
       dotsUp: false,
