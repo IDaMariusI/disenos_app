@@ -60,49 +60,47 @@ class _MainMenu extends StatelessWidget {
     final accentColor = appTheme.currentTheme.colorScheme.secondary;
 
     return Drawer(
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            SafeArea(
-              child: Container(
-                height: 200,
-                width: double.infinity,
-                child: CircleAvatar(
-                  backgroundColor: accentColor,
-                  child: const Text('MV', style: TextStyle(fontSize: 50)),
-                ),
+      child: Column(
+        children: <Widget>[
+          SafeArea(
+            child: SizedBox(
+              height: 200,
+              width: double.infinity,
+              child: CircleAvatar(
+                backgroundColor: accentColor,
+                child: const Text('MV', style: TextStyle(fontSize: 50)),
               ),
             ),
-            Expanded(child: _OptionsList()),
-            ListTile(
-              leading: Icon(
-                Icons.lightbulb_outline,
-                color: accentColor,
-              ),
-              title: const Text('Dark Mode'),
+          ),
+          Expanded(child: _OptionsList()),
+          ListTile(
+            leading: Icon(
+              Icons.lightbulb_outline,
+              color: accentColor,
+            ),
+            title: const Text('Dark Mode'),
+            trailing: Switch.adaptive(
+              activeColor: accentColor,
+              value: appTheme.darkTheme,
+              onChanged: (value) => appTheme.darkTheme = value,
+            ),
+          ),
+          SafeArea(
+            bottom: true,
+            top: false,
+            left: false,
+            right: false,
+            child: ListTile(
+              leading: Icon(Icons.add_to_home_screen, color: accentColor),
+              title: const Text('Custom Theme'),
               trailing: Switch.adaptive(
                 activeColor: accentColor,
-                value: appTheme.darkTheme,
-                onChanged: (value) => appTheme.darkTheme = value,
+                value: appTheme.customTheme,
+                onChanged: (value) => appTheme.customTheme = value,
               ),
             ),
-            SafeArea(
-              bottom: true,
-              top: false,
-              left: false,
-              right: false,
-              child: ListTile(
-                leading: Icon(Icons.add_to_home_screen, color: accentColor),
-                title: const Text('Custom Theme'),
-                trailing: Switch.adaptive(
-                  activeColor: accentColor,
-                  value: appTheme.customTheme,
-                  onChanged: (value) => appTheme.customTheme = value,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
