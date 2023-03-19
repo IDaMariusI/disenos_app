@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:disenos_app/src/routes/routes.dart';
 import 'package:disenos_app/src/theme/theme.dart';
 
-class LauncherPage extends StatelessWidget {
-  const LauncherPage({super.key});
+class LauncherTabletPage extends StatelessWidget {
+  const LauncherTabletPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class LauncherPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: accentColor,
-        title: const Text('Diseño en Flutter - Phone'),
+        title: const Text('Diseño en Flutter - Tablet'),
       ),
       body: _OptionsList(),
       drawer: _MainMenu(),

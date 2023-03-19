@@ -25,9 +25,13 @@ class MyApp extends StatelessWidget {
       theme: currentTheme,
       home: OrientationBuilder(
         builder: (BuildContext context, Orientation orientation) {
-          return Container(
-            child: const LauncherPage(),
-          );
+          final screenSize = MediaQuery.of(context).size;
+
+          if (screenSize.width > 500) {
+            return const LauncherTabletPage();
+          } else {
+            return const LauncherPage();
+          }
         },
       ),
     );
