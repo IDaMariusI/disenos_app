@@ -5,33 +5,36 @@ class ThemeChanger extends ChangeNotifier {
   bool _customTheme = false;
 
   late ThemeData _currentTheme;
-  late ThemeData _theme;
 
   ThemeChanger(int theme) {
     switch (theme) {
       case 1: // Light
         _darkTheme = false;
         _customTheme = false;
-        _theme = ThemeData.light();
-        _currentTheme = _theme;
+        _currentTheme = ThemeData.light().copyWith(
+          colorScheme:
+              ThemeData.light().colorScheme.copyWith(secondary: Colors.pink),
+        );
         break;
+
       case 2: // Dark
         _darkTheme = true;
         _customTheme = false;
-        _theme = ThemeData.dark();
-        _currentTheme = _theme.copyWith(
-          colorScheme: _theme.colorScheme.copyWith(secondary: Colors.pink),
+        _currentTheme = ThemeData.dark().copyWith(
+          colorScheme:
+              ThemeData.dark().colorScheme.copyWith(secondary: Colors.pink),
         );
         break;
+
       case 3:
         _darkTheme = false;
         _customTheme = true;
         break;
+
       default:
         _darkTheme = false;
         _customTheme = false;
-        _theme = ThemeData.light();
-        _currentTheme = _theme;
+        _currentTheme = ThemeData.light();
     }
   }
 
@@ -44,13 +47,15 @@ class ThemeChanger extends ChangeNotifier {
     _darkTheme = value;
 
     if (value) {
-      _theme = ThemeData.dark();
-      _currentTheme = _theme.copyWith(
-        colorScheme: _theme.colorScheme.copyWith(secondary: Colors.pink),
+      _currentTheme = ThemeData.dark().copyWith(
+        colorScheme:
+            ThemeData.dark().colorScheme.copyWith(secondary: Colors.pink),
       );
     } else {
-      _theme = ThemeData.light();
-      _currentTheme = _theme;
+      _currentTheme = ThemeData.light().copyWith(
+        colorScheme:
+            ThemeData.light().colorScheme.copyWith(secondary: Colors.pink),
+      );
     }
 
     notifyListeners();
@@ -61,18 +66,16 @@ class ThemeChanger extends ChangeNotifier {
     _customTheme = value;
 
     if (value) {
-      _theme = ThemeData.dark();
-      _currentTheme = _theme.copyWith(
+      _currentTheme = ThemeData.dark().copyWith(
         scaffoldBackgroundColor: const Color(0xff16202B),
         textTheme: const TextTheme(bodyLarge: TextStyle(color: Colors.white)),
-        colorScheme: _theme.colorScheme.copyWith(
-          secondary: const Color(0xff48A0EB),
-          primary: Colors.white,
-        ),
+        colorScheme: ThemeData.dark().colorScheme.copyWith(
+              secondary: const Color(0xff48A0EB),
+              primary: Colors.white,
+            ),
       );
     } else {
-      _theme = ThemeData.light();
-      _currentTheme = _theme;
+      _currentTheme = ThemeData.light();
     }
 
     notifyListeners();
