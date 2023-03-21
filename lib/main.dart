@@ -2,15 +2,26 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
+import 'package:disenos_app/src/models/models.dart';
 import 'package:disenos_app/src/pages/pages.dart';
 import 'package:disenos_app/src/theme/theme.dart';
 
 void main() => runApp(
-      ChangeNotifierProvider(
-        create: (_) => ThemeChanger(2),
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider<ThemeChanger>(create: (_) => ThemeChanger(2)),
+          ChangeNotifierProvider<LayoutModel>(create: (_) => LayoutModel()),
+        ],
         child: const MyApp(),
       ),
     );
+
+// void main() => runApp(
+//       ChangeNotifierProvider(
+//         create: (_) => ThemeChanger(2),
+//         child: const MyApp(),
+//       ),
+//     );
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
