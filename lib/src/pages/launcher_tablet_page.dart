@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'package:disenos_app/src/models/models.dart';
-import 'package:disenos_app/src/pages/pages.dart';
 import 'package:disenos_app/src/routes/routes.dart';
 import 'package:disenos_app/src/theme/theme.dart';
 
